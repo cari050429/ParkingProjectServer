@@ -29,6 +29,7 @@ using System.ComponentModel.DataAnnotations;
         public DateTime DateCreated { get; set; }
         public bool Inactive { get; set; }
 
+        [Required]
         public virtual ParkingAreas ParkingArea { get; set; }
 
 

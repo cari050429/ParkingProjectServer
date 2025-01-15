@@ -32,7 +32,7 @@ using System.ComponentModel.DataAnnotations.Schema;
         public bool Inactive {  get; set; }
 
         public virtual ParkingAreaTypes ParkingAreaType { get; set; }
-       // public virtual ICollection<ParkingPermits> ParkingPermits { get; set; }
+        //public virtual ICollection<ParkingPermits> ParkingPermits { get; set; }
        //This might not be needed 
 
 
