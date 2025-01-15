@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore;
 [ApiController]
 [Route("api/[controller]")]
-public class ParkingController
+public class ParkingController : ControllerBase
 {
     private readonly IParkingService _parkingservice;
 
@@ -38,6 +39,7 @@ public class ParkingController
     [HttpPost("createParkingAreaType")]
     public async Task<ActionResult<ParkingAreaTypeResponse>> CreateParkingAreaType(ParkingAreaTypeRequest request)
     {
+
         return await _parkingservice.CreateParkingAreaTypeAsync(request);
     }
     //Create one ParkingPermit

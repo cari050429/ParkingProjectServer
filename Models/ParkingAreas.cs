@@ -6,15 +6,15 @@ using System.ComponentModel.DataAnnotations.Schema;
     public class ParkingAreas
     {
 
-        public ParkingAreas(ParkingAreaRequest request)
-        {
-            ParkingAreaTypeID = request.ParkingAreaTypeID;
-            ParkingAreaName = request.ParkingAreaName;
-            Latitude = request.Latitude;
-            Longitude = request.Longitude;
-            DateCreated = DateTime.Now;
-            Inactive = request.Inactive;
-        }
+        // public ParkingAreas(ParkingAreaRequest request)
+        // {
+        //     ParkingAreaTypeID = request.ParkingAreaTypeID;
+        //     ParkingAreaName = request.ParkingAreaName;
+        //     Latitude = request.Latitude;
+        //     Longitude = request.Longitude;
+        //     DateCreated = DateTime.Now;
+        //     Inactive = request.Inactive;
+        // }
         [Key]
         public int Id { get; set; }
 

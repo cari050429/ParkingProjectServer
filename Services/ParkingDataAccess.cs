@@ -44,6 +44,8 @@ public class ParkingDataAccess : IParkingDataAccess
 
     public async Task<ParkingAreaTypes> CreateParkingAreaTypeAsync(ParkingAreaTypes parkingAreaType)
     {
+        Console.WriteLine($"Adding to database: {parkingAreaType.ParkingAreaTypeDescription}, {parkingAreaType.Inactive}");
+
         _context.ParkingAreaTypes.Add(parkingAreaType);
         await _context.SaveChangesAsync();
         return parkingAreaType; // change this to return the new parking area type that was just made 

@@ -4,11 +4,11 @@
     public class ParkingAreaTypes
     {
 
-        public ParkingAreaTypes(ParkingAreaTypeRequest request) 
-        {
-            ParkingAreaTypeDescription = request.ParkingAreaTypeDescription;
-            Inactive= request.Inactive;
-        }
+        // public ParkingAreaTypes(ParkingAreaTypeRequest request) 
+        // {
+        //     ParkingAreaTypeDescription = request.ParkingAreaTypeDescription;
+        //     Inactive= request.Inactive;
+        // }
 
         [Key]
         public int Id { get; set; }

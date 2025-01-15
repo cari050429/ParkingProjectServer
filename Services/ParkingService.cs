@@ -31,7 +31,12 @@ public class ParkingService : IParkingService
 
     public async Task<ParkingAreaTypeResponse> CreateParkingAreaTypeAsync(ParkingAreaTypeRequest parkingAreaTypeRequest)
     {
-       return new ParkingAreaTypeResponse(await _dataAccess.CreateParkingAreaTypeAsync( new ParkingAreaTypes(parkingAreaTypeRequest)));
+
+        var parkingAreaType = new ParkingAreaTypes{
+            ParkingAreaTypeDescription = parkingAreaTypeRequest.ParkingAreaTypeDescription, 
+            Inactive = parkingAreaTypeRequest.Inactive
+        };
+       return new ParkingAreaTypeResponse(await _dataAccess.CreateParkingAreaTypeAsync( parkingAreaType));
        
     }
 

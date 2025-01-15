@@ -5,16 +5,16 @@ using System.ComponentModel.DataAnnotations;
 
 public class ParkingAreaResponse
 {
-    public ParkingAreaResponse(ParkingAreas parkingArea)
-    {
-        Id = parkingArea.Id;
-        ParkingAreaTypeID = parkingArea.ParkingAreaTypeID;
-        ParkingAreaName = parkingArea.ParkingAreaName;
-        Latitude = parkingArea.Latitude;
-        Longitude = parkingArea.Longitude;
-        DateCreated = parkingArea.DateCreated;
-        Inactive = parkingArea.Inactive;
-    }
+    // public ParkingAreaResponse(ParkingAreas parkingArea)
+    // {
+    //     Id = parkingArea.Id;
+    //     ParkingAreaTypeID = parkingArea.ParkingAreaTypeID;
+    //     ParkingAreaName = parkingArea.ParkingAreaName;
+    //     Latitude = parkingArea.Latitude;
+    //     Longitude = parkingArea.Longitude;
+    //     DateCreated = parkingArea.DateCreated;
+    //     Inactive = parkingArea.Inactive;
+    // }
 
     public int Id { get; set; }
 

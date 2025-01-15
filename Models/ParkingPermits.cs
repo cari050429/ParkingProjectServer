@@ -4,15 +4,15 @@ using System.ComponentModel.DataAnnotations;
     public class ParkingPermits
     {
 
-        public ParkingPermits(ParkingPermitRequest request) 
-        { 
-            ParkingAreaID = request.ParkingAreaID;
-            EffectiveDate = request.EffectiveDate;
-            ExpirationDate = request.ExpirationDate;
-            LicensePlate = request.LicensePlate;
-            DateCreated = DateTime.Now;
-            Inactive = request.Inactive;
-        }
+        // public ParkingPermits(ParkingPermitRequest request) 
+        // { 
+        //     ParkingAreaID = request.ParkingAreaID;
+        //     EffectiveDate = request.EffectiveDate;
+        //     ExpirationDate = request.ExpirationDate;
+        //     LicensePlate = request.LicensePlate;
+        //     DateCreated = DateTime.Now;
+        //     Inactive = request.Inactive;
+        // }
 
         [Key]
         public int Id { get; set; }
