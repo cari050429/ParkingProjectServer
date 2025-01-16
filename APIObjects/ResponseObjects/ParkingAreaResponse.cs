@@ -14,7 +14,10 @@ public class ParkingAreaResponse
         Longitude = parkingArea.Longitude;
         DateCreated = parkingArea.DateCreated;
         Inactive = parkingArea.Inactive;
+        ParkingAreaTypeDescription = parkingArea.ParkingAreaType.ParkingAreaTypeDescription;
     }
+
+    
 
     public int Id { get; set; }
 
@@ -29,4 +32,8 @@ public class ParkingAreaResponse
 
     public DateTime DateCreated { get; set; }
     public bool Inactive { get; set; }
+
+    [Required]
+    public string ParkingAreaTypeDescription { get; set; }
+
 }

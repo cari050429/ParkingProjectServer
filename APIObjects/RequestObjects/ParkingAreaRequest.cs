@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 public class ParkingAreaRequest
 {
+    
     public int ParkingAreaTypeID { get; set; }
 
     public float Latitude { get; set; }
@@ -11,6 +12,8 @@ public class ParkingAreaRequest
 
     [StringLength(50)]
     public string ParkingAreaName { get; set; }
+
+    public DateTime? DateCreated { get; set; }
 
     public bool Inactive { get; set; }
 }

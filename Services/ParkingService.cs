@@ -51,7 +51,7 @@ public class ParkingService : IParkingService
 
 
 
-   public async Task<ParkingAreaResponse> CreateParkingAreaAsync(ParkingAreaRequest parkingAreaRequest)
+   public async Task<bool> CreateParkingAreaAsync(ParkingAreaRequest parkingAreaRequest)
    {
     var parkingArea = new ParkingAreas{
             ParkingAreaTypeID = parkingAreaRequest.ParkingAreaTypeID,
@@ -61,24 +61,24 @@ public class ParkingService : IParkingService
             DateCreated = DateTime.Now,
             Inactive = parkingAreaRequest.Inactive,
         };
-       return new ParkingAreaResponse(await _dataAccess.CreateParkingAreaAsync( parkingArea));
+       return await _dataAccess.CreateParkingAreaAsync( parkingArea);
 
    }
 //    Task<ParkingAreaResponse> UpdateParkingAreaAsync(int id, ParkingAreaRequest parkingAreaRequest);
 //    Task<bool> DeleteParkingAreaAsync(int id);
 
-    public async Task<ParkingAreaTypeResponse> CreateParkingAreaTypeAsync(ParkingAreaTypeRequest parkingAreaTypeRequest)
+    public async Task<bool> CreateParkingAreaTypeAsync(ParkingAreaTypeRequest parkingAreaTypeRequest)
     {
 
         var parkingAreaType = new ParkingAreaTypes{
             ParkingAreaTypeDescription = parkingAreaTypeRequest.ParkingAreaTypeDescription, 
             Inactive = parkingAreaTypeRequest.Inactive
         };
-       return new ParkingAreaTypeResponse(await _dataAccess.CreateParkingAreaTypeAsync( parkingAreaType));
+       return await _dataAccess.CreateParkingAreaTypeAsync( parkingAreaType);
        
     }
 
-        public async Task<ParkingPermitResponse> CreateParkingPermitTypeAsync(ParkingPermitRequest parkingPermitRequest)
+        public async Task<bool> CreateParkingPermitTypeAsync(ParkingPermitRequest parkingPermitRequest)
     {
 
 
@@ -91,15 +91,28 @@ public class ParkingService : IParkingService
             Inactive = parkingPermitRequest.Inactive,
         };
 
-       return new ParkingPermitResponse(await _dataAccess.CreateParkingPermitAsync( parkingPermit));
+       return await _dataAccess.CreateParkingPermitAsync( parkingPermit);
        
     }
 
-        public async Task<ParkingAreaResponse> GetParkingAreaByIdAsync(int id)
+        public async Task<ParkingPermitDetailResponse> getParkingPermitByIdAsync(int id)
     {
-            return new ParkingAreaResponse(await _dataAccess.GetParkingAreaByIdAsync(id));
+            return new ParkingPermitDetailResponse(await _dataAccess.getParkingPermitByIdAsync(id));
     }
-    public async Task<ParkingAreaResponse> UpdateParkingAreaAsync(ParkingAreaRequest parkingAreaRequest, int id)
+
+     public async Task<ParkingAreaResponse> getParkingAreaByIdAsync(int id)
+     {
+        return new ParkingAreaResponse(await _dataAccess.getParkingAreaByIdAsync(id));
+    }
+     
+
+    public async Task<ParkingAreaTypeResponse> getParkingAreaTypeByIdAsync(int id)
+    {
+        return new ParkingAreaTypeResponse(await _dataAccess.getParkingAreaTypeByIdAsync(id));
+    }
+    
+
+    public async Task<bool> UpdateParkingAreaAsync(ParkingAreaRequest parkingAreaRequest, int id)
     {
         var parkingArea = new ParkingAreas{
             ParkingAreaTypeID = parkingAreaRequest.ParkingAreaTypeID,
@@ -109,20 +122,20 @@ public class ParkingService : IParkingService
             DateCreated = DateTime.Now,
             Inactive = parkingAreaRequest.Inactive,
         };
-       return new ParkingAreaResponse(await _dataAccess.UpdateParkingAreaAsync( parkingArea, id));
+       return await _dataAccess.UpdateParkingAreaAsync( parkingArea, id);
 
     }
 
-    public async Task<ParkingAreaTypeResponse> UpdateParkingAreaTypeAsync(ParkingAreaTypeRequest parkingAreaTypeRequest, int id)
+    public async Task<bool> UpdateParkingAreaTypeAsync(ParkingAreaTypeRequest parkingAreaTypeRequest, int id)
     {
         var parkingAreaType = new ParkingAreaTypes{
             ParkingAreaTypeDescription = parkingAreaTypeRequest.ParkingAreaTypeDescription, 
             Inactive = parkingAreaTypeRequest.Inactive
         };
-       return new ParkingAreaTypeResponse(await _dataAccess.UpdateParkingAreaTypeAsync( parkingAreaType, id));
+       return await _dataAccess.UpdateParkingAreaTypeAsync( parkingAreaType, id);
     }
 
-    public async Task<ParkingPermitResponse> UpdateParkingPermitAsync(ParkingPermitRequest parkingPermitRequest, int id)
+    public async Task<bool> UpdateParkingPermitAsync(ParkingPermitRequest parkingPermitRequest, int id)
     {
         var parkingPermit = new ParkingPermits{
             ParkingAreaID = parkingPermitRequest.ParkingAreaID,
@@ -133,7 +146,7 @@ public class ParkingService : IParkingService
             Inactive = parkingPermitRequest.Inactive,
         };
 
-       return new ParkingPermitResponse(await _dataAccess.UpdateParkingPermitAsync( parkingPermit, id));
+       return await _dataAccess.UpdateParkingPermitAsync( parkingPermit, id);
        
     }
 

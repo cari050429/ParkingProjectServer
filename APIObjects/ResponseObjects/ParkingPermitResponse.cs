@@ -8,6 +8,7 @@ public class ParkingPermitResponse
     public ParkingPermitResponse(ParkingPermits parkingPermit) 
     {
         Id = parkingPermit.Id;
+        ParkingAreaId = parkingPermit.ParkingArea.Id;
         ParkingAreaName= parkingPermit.ParkingArea.ParkingAreaName;
         EffectiveDate = parkingPermit.EffectiveDate;
         ExpirationDate = parkingPermit.ExpirationDate;
@@ -19,6 +20,8 @@ public class ParkingPermitResponse
     public DateTime EffectiveDate { get; set; }
 
     public int Id{get; set;}
+    public int ParkingAreaId{get; set;}
+
     public DateTime ExpirationDate { get; set; }
 
     [StringLength(50)]

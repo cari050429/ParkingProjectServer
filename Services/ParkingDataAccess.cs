@@ -18,23 +18,39 @@ public class ParkingDataAccess : IParkingDataAccess
     public async Task<IEnumerable<ParkingAreas>> GetAllParkingAreasAsync()
     {
         return await _context.ParkingAreas
-                             //.Include(pa => pa.ParkingAreaType) 
+                             .Include(pa => pa.ParkingAreaType) 
                              .ToListAsync();
     }
 
     
-    public async Task<ParkingAreas> GetParkingAreaByIdAsync(int id)
+    public async Task<ParkingPermits> getParkingPermitByIdAsync(int id)
     {
-        return await _context.ParkingAreas
-         .FirstOrDefaultAsync(pa => pa.Id == id);
+        return await _context.ParkingPermits
+                    .Include(pp=>pp.ParkingArea)
+                    .ThenInclude(pa => pa.ParkingAreaType)
+                    .FirstOrDefaultAsync(pa => pa.Id == id);
 
     }
 
-    public async Task<ParkingAreas> CreateParkingAreaAsync(ParkingAreas parkingArea)
+    public async Task<ParkingAreas> getParkingAreaByIdAsync(int id) 
+    {
+        return await _context.ParkingAreas.Include(pa => pa.ParkingAreaType).FirstOrDefaultAsync(pa => pa.Id == id);
+    }
+
+    public async Task<ParkingAreaTypes> getParkingAreaTypeByIdAsync(int id)
+    {
+        return await _context.ParkingAreaTypes.FirstOrDefaultAsync(pt => pt.Id == id);
+    }
+
+    public async Task<bool> CreateParkingAreaAsync(ParkingAreas parkingArea)
     {
         _context.ParkingAreas.Add(parkingArea);
         await _context.SaveChangesAsync();
-        return parkingArea;
+
+        var newParkingArea = await _context.ParkingAreas
+        .FirstOrDefaultAsync(p => p.Id == parkingArea.Id);
+
+        return newParkingArea != null;  
     }
 
     public async Task<IEnumerable<ParkingAreaTypes>> GetAllParkingAreaTypesAsync()
@@ -52,42 +68,31 @@ public class ParkingDataAccess : IParkingDataAccess
     }
 
 
-
-    // public async Task<ParkingAreas> UpdateParkingAreaAsync(ParkingAreas parkingArea)
-    // {
-    //     _context.ParkingAreas.Update(parkingArea);
-    //     await _context.SaveChangesAsync();
-    //     return parkingArea;
-    // }
-
-    // public async Task<bool> DeleteParkingAreaAsync(ParkingAreas parkingArea)
-    // {
-    //     _context.ParkingAreas.Remove(parkingArea);
-    //     var result = await _context.SaveChangesAsync();
-    //     return result > 0; 
-    // }
-
-    public async Task<ParkingAreaTypes> CreateParkingAreaTypeAsync(ParkingAreaTypes parkingAreaType)
+    public async Task<bool> CreateParkingAreaTypeAsync(ParkingAreaTypes parkingAreaType)
     {
 
         _context.ParkingAreaTypes.Add(parkingAreaType);
         await _context.SaveChangesAsync();
-        return parkingAreaType; 
+
+        var newParkingAreaType = await _context.ParkingAreaTypes
+        .FirstOrDefaultAsync(p => p.Id == parkingAreaType.Id);
+
+        return newParkingAreaType != null;  
     }
 
-    public async Task<ParkingPermits>CreateParkingPermitAsync(ParkingPermits parkingPermit)
+    public async Task<bool>CreateParkingPermitAsync(ParkingPermits parkingPermit)
     {
          _context.ParkingPermits.Add(parkingPermit);
         await _context.SaveChangesAsync();
 
          var newParkingPermit = await _context.ParkingPermits
-        .Include(p => p.ParkingArea) 
         .FirstOrDefaultAsync(p => p.Id == parkingPermit.Id);
 
-        return newParkingPermit;
+        return newParkingPermit != null;  
+
     }
 
-    public async Task<ParkingAreas> UpdateParkingAreaAsync(ParkingAreas parkingArea, int id)
+    public async Task<bool> UpdateParkingAreaAsync(ParkingAreas parkingArea, int id)
     {
         var existingParkingArea = await _context.ParkingAreas.FirstOrDefaultAsync(pa => pa.Id == id);
 
@@ -98,10 +103,10 @@ public class ParkingDataAccess : IParkingDataAccess
         existingParkingArea.Inactive = parkingArea.Inactive;
 
         await _context.SaveChangesAsync();
-        return existingParkingArea; 
+        return existingParkingArea != null; 
     }
 
-    public async Task<ParkingAreaTypes> UpdateParkingAreaTypeAsync(ParkingAreaTypes parkingAreaType, int id)
+    public async Task<bool> UpdateParkingAreaTypeAsync(ParkingAreaTypes parkingAreaType, int id)
     {
         var existingParkingAreaType = await _context.ParkingAreaTypes.FirstOrDefaultAsync(pat => pat.Id == id);
 
@@ -110,9 +115,9 @@ public class ParkingDataAccess : IParkingDataAccess
         existingParkingAreaType.Inactive = parkingAreaType.Inactive;
 
         await _context.SaveChangesAsync();
-        return existingParkingAreaType; 
+        return existingParkingAreaType != null; 
     }
-    public async Task<ParkingPermits> UpdateParkingPermitAsync(ParkingPermits parkingPermit, int id)
+    public async Task<bool> UpdateParkingPermitAsync(ParkingPermits parkingPermit, int id)
     {
         var existingParkingPermit = await _context.ParkingPermits
                                         .Include(pp=>pp.ParkingArea)
@@ -125,7 +130,7 @@ public class ParkingDataAccess : IParkingDataAccess
         existingParkingPermit.Inactive = parkingPermit.Inactive;
 
         await _context.SaveChangesAsync();
-        return existingParkingPermit; 
+        return existingParkingPermit != null; 
 
     }
 

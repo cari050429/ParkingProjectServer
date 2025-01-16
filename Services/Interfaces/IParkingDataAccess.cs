@@ -11,20 +11,24 @@ public interface IParkingDataAccess
 
     public Task<IEnumerable<ParkingPermits>> GetAllParkingPermitsAsync();
 
-    public Task<ParkingAreas> CreateParkingAreaAsync(ParkingAreas parkingArea);
+    public Task<bool> CreateParkingAreaAsync(ParkingAreas parkingArea);
    
 
-    public Task<ParkingAreaTypes> CreateParkingAreaTypeAsync(ParkingAreaTypes parkingAreaType);
+    public Task<bool> CreateParkingAreaTypeAsync(ParkingAreaTypes parkingAreaType);
 
-    public Task<ParkingPermits> CreateParkingPermitAsync(ParkingPermits parkingPermit);
+    public Task<bool> CreateParkingPermitAsync(ParkingPermits parkingPermit);
 
-    public Task<ParkingAreas> GetParkingAreaByIdAsync(int id);
+    public Task<ParkingPermits> getParkingPermitByIdAsync(int id);
+    public Task<ParkingAreas> getParkingAreaByIdAsync(int id);
 
-    public Task<ParkingAreas> UpdateParkingAreaAsync(ParkingAreas parkingArea, int id);
+    public Task<ParkingAreaTypes> getParkingAreaTypeByIdAsync(int id);
 
-    public Task<ParkingAreaTypes> UpdateParkingAreaTypeAsync(ParkingAreaTypes parkingAreaType, int id);
 
-    public Task<ParkingPermits> UpdateParkingPermitAsync(ParkingPermits parkingPermit, int id);
+    public Task<bool> UpdateParkingAreaAsync(ParkingAreas parkingArea, int id);
+
+    public Task<bool> UpdateParkingAreaTypeAsync(ParkingAreaTypes parkingAreaType, int id);
+
+    public Task<bool> UpdateParkingPermitAsync(ParkingPermits parkingPermit, int id);
 
     public Task<bool> DeleteParkingAreaAsync(int id); 
     public Task<bool> DeleteParkingPermitAsync(int id); 

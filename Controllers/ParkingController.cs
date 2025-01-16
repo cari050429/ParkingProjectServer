@@ -41,18 +41,34 @@ public class ParkingController : ControllerBase
 	}
 
     //Get One Parking Permit
-    [HttpGet("getParkingArea/{id}")]
-    public async Task<ActionResult<ParkingAreaResponse>> GetParkingAreaById(int id)
+    [HttpGet("getParkingPermitById/{id}")]
+    public async Task<ActionResult<ParkingPermitDetailResponse>> getParkingPermitById(int id)
     {
 
-        return await _parkingservice.GetParkingAreaByIdAsync(id);
+        return await _parkingservice.getParkingPermitByIdAsync(id);
+    }
+
+    //Get One Parking Permit
+    [HttpGet("getParkingAreaById/{id}")]
+    public async Task<ActionResult<ParkingAreaResponse>> getParkingAreaById(int id)
+    {
+
+        return await _parkingservice.getParkingAreaByIdAsync(id);
+    }
+
+    //Get One Parking Permit
+    [HttpGet("getParkingAreaTypeById/{id}")]
+    public async Task<ActionResult<ParkingAreaTypeResponse>> getParkingAreaTypeById(int id)
+    {
+
+        return await _parkingservice.getParkingAreaTypeByIdAsync(id);
     }
 
 
     //Create one ParkingArea
     [HttpPost("CreateParkingArea")]
 
-      public async Task<ActionResult<ParkingAreaResponse>> CreateParkingArea(ParkingAreaRequest request)
+      public async Task<ActionResult<bool>> CreateParkingArea(ParkingAreaRequest request)
     {
 
         return await _parkingservice.CreateParkingAreaAsync(request);
@@ -61,7 +77,7 @@ public class ParkingController : ControllerBase
     //Create one ParkingAreaType
 
     [HttpPost("createParkingAreaType")]
-    public async Task<ActionResult<ParkingAreaTypeResponse>> CreateParkingAreaType(ParkingAreaTypeRequest request)
+    public async Task<ActionResult<bool>> CreateParkingAreaType(ParkingAreaTypeRequest request)
     {
 
         return await _parkingservice.CreateParkingAreaTypeAsync(request);
@@ -69,7 +85,7 @@ public class ParkingController : ControllerBase
 
     //Create one Parking Permit
     [HttpPost("createParkingPermit")]
-    public async Task<ActionResult<ParkingPermitResponse>> CreateParkingPermit(ParkingPermitRequest request)
+    public async Task<ActionResult<bool>> CreateParkingPermit(ParkingPermitRequest request)
     {
 
         return await _parkingservice.CreateParkingPermitTypeAsync(request);
@@ -79,7 +95,7 @@ public class ParkingController : ControllerBase
 
     //Update ParkingArea
     [HttpPut("UpdateParkingArea/{id}")]
-      public async Task<ActionResult<ParkingAreaResponse>> UpdateParkingArea(ParkingAreaRequest request, int id)
+      public async Task<ActionResult<bool>> UpdateParkingArea(ParkingAreaRequest request, int id)
     {
 
         return await _parkingservice.UpdateParkingAreaAsync(request, id);
@@ -88,7 +104,7 @@ public class ParkingController : ControllerBase
     //Update ParkingAreaType
 
     [HttpPut("UpdateParkingAreaType/{id}")]
-      public async Task<ActionResult<ParkingAreaTypeResponse>> UpdateParkingAreaType(ParkingAreaTypeRequest request, int id)
+      public async Task<ActionResult<bool>> UpdateParkingAreaType(ParkingAreaTypeRequest request, int id)
     {
 
         return await _parkingservice.UpdateParkingAreaTypeAsync(request, id);
@@ -97,7 +113,7 @@ public class ParkingController : ControllerBase
     //Update Parking Permit
 
     [HttpPut("UpdateParkingPermit/{id}")]
-      public async Task<ActionResult<ParkingPermitResponse>> UpdateParkingPermit(ParkingPermitRequest request, int id)
+      public async Task<ActionResult<bool>> UpdateParkingPermit(ParkingPermitRequest request, int id)
     {
 
         return await _parkingservice.UpdateParkingPermitAsync(request, id);
